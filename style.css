@@ -1,0 +1,15 @@
+canvas {
+  border: 1px solid black;
+}
+
+.green-block {
+  background-color: green;
+  width: 32px;
+  height: 32px;
+}
+
+.blue-block {
+  background-color: blue;
+  width: 32px;
+  height: 32px;
+}
