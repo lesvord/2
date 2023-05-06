@@ -1,21 +1,51 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Регистрация</title>
-</head>
-<body>
-	<h1>Регистрация</h1>
-	<form action="register.php" method="post">
-		<label for="username">Логин:</label>
-		<input type="text" name="username" id="username" required>
-		<br>
-		<label for="password">Пароль:</label>
-		<input type="password" name="password" id="password" required>
-		<br>
-		<label for="email">Email:</label>
-		<input type="email" name="email" id="email" required>
-		<br>
-		<input type="submit" value="Зарегистрироваться">
-	</form>
-</body>
-</html>
+<!-- Форма регистрации -->
+<form id="registration-form">
+  <label for="username">Логин:</label>
+  <input type="text" id="username" name="username">
+  
+  <label for="password">Пароль:</label>
+  <input type="password" id="password" name="password">
+  
+  <label for="email">Электронная почта:</label>
+  <input type="email" id="email" name="email">
+  
+  <label for="character-name">Имя персонажа:</label>
+  <input type="text" id="character-name" name="character-name">
+  
+  <input type="submit" value="Зарегистрироваться">
+</form>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  // Обработка отправки формы
+  $('#registration-form').submit(function(event) {
+    // Отменяем стандартное поведение формы
+    event.preventDefault();
+    
+    // Собираем данные из формы
+    var username = $('#username').val();
+    var password = $('#password').val();
+    var email = $('#email').val();
+    var characterName = $('#character-name').val();
+    
+    // Отправляем данные на сервер
+    $.ajax({
+      url: '/registration.php',
+      method: 'POST',
+      data: {
+        username: username,
+        password: password,
+        email: email,
+        characterName: characterName
+      },
+      success: function(response) {
+        // Обработка успешного ответа от сервера
+        console.log(response);
+      },
+      error: function(error) {
+        // Обработка ошибок при отправке запроса
+        console.log(error);
+      }
+    });
+  });
+</script>
